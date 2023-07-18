@@ -22,7 +22,7 @@ if __name__ == '__main__':
 
     # add years and degrees to x with normalization
     years = data.node_year.squeeze(1)
-    degrees = degree(data.edge_index[1])
+    degrees = degree(data.edge_index[1], num_nodes=data.x.shape[0])
     years = (years - YEARS_MEAN) / YEARS_STD
     degrees = (degrees - DEGREE_MEAN) / DEGREE_STD
     data.x = torch.cat([data.x, years.reshape(-1, 1)], dim=1)
